@@ -96,13 +96,14 @@ def xkcd_pw_gen_main_mt(words, hashFn, numThreads, numPasswords, ent1, ent2):
 def xkcd_pw_gen_main_st(words, hashFn, numPasswords, ent1, ent2):
     return [ xkcd_pw_gen_generate( words, hashFn, ent1, ent2 ) for i in range( 0, numPasswords) ]
 
-def xkcd_pw_gen_write_feedback(pws):
+def xkcd_pw_gen_write_feedback(locale, pws):
     feedback = alfred.Feedback()
     for pw in pws:
         feedback.addItem( title = pw, arg = pw )
     feedback.output()
 
 if __name__ == '__main__':
+    default_locale = subprocess.check_output( 'defaults read .GlobalPreferences AppleLanguages | tr -d [:space:] | cut -c 2-3', shell=True ).rstrip( '\n' )
 
     parser = argparse.ArgumentParser( description='Generates strong passwords based on the concept from http://xkcd.com/936/ and code from http://passphra.se' )
     parser.add_argument( '--hash', '-H',
@@ -132,7 +133,8 @@ if __name__ == '__main__':
          )
     parser.add_argument( '--locale', '-l',
          type    = str,
-         default = None,
+         nargs   = '?',
+         default = default_locale,
          help    = 'Override the system locale. The system locale is used by default'
          )
 
@@ -149,10 +151,7 @@ if __name__ == '__main__':
     ent1 = xkcd_pw_gen_time_ent()
     ent2 = xkcd_pw_gen_time_ent()
 
-    locale = args.locale
-    if locale == None:
-        locale = subprocess.check_output( 'defaults read .GlobalPreferences AppleLanguages | tr -d [:space:] | cut -c 2-3', shell=True ).rstrip( '\n' )
-    words = xkcd_pw_gen_read_words( locale )
+    words = xkcd_pw_gen_read_words( args.locale )
 
     if args.num_threads == 1:
         mainFn = lambda x: xkcd_pw_gen_main_st( words, hashFns[args.hash], x, ent1, ent2 )
@@ -162,6 +161,6 @@ if __name__ == '__main__':
     pws = mainFn( args.num_passwords )
 
     if args.output_for_alfred:
-        xkcd_pw_gen_write_feedback( pws )
+        xkcd_pw_gen_write_feedback( args.locale, pws )
     else:
         print "\n".join( pws )
