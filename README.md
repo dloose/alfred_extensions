@@ -1,10 +1,9 @@
 Alfred Extensions
 =================
 
-Just a couple of [Alfred](http://www.alfredapp.com) workflows I developed. If you find them useful, let me know.
+Just an [Alfred](http://www.alfredapp.com) workflow I developed. If you find it useful, let me know.
 
-* `password_generator` generates a couple of passwords based on [http://xkcd.com/936/](http://xkcd.com/936/). Download it from [https://dl.dropboxusercontent.com/u/30180245/Alfred/Password%20Generator.alfredworkflow](https://dl.dropboxusercontent.com/u/30180245/Alfred/Password%20Generator.alfredworkflow)
-* `screen_sharing` starts a screen sharing session with a remote host. Download it from [https://dl.dropboxusercontent.com/u/30180245/Alfred/Start%20Screen%20Sharing.alfredworkflow](https://dl.dropboxusercontent.com/u/30180245/Alfred/Start%20Screen%20Sharing.alfredworkflow)
+* `password_generator` generates a couple of passwords based on [http://xkcd.com/936/](http://xkcd.com/936/). Build it with the included `build.sh` script.
 
 Credit
 ======
