@@ -90,7 +90,7 @@
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
 				<key>argumenttrimmode</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -98,7 +98,7 @@
 				<key>keyword</key>
 				<string>encode</string>
 				<key>queuedelaycustom</key>
-				<integer>1</integer>
+				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<false/>
 				<key>queuedelaymode</key>
@@ -108,7 +108,7 @@
 				<key>runningsubtext</key>
 				<string>Encoding...</string>
 				<key>script</key>
-				<string>python encode.py -a encode "{query}"</string>
+				<string>python encode.py -a encode {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -154,7 +154,7 @@
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
 				<key>argumenttrimmode</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -162,7 +162,7 @@
 				<key>keyword</key>
 				<string>decode</string>
 				<key>queuedelaycustom</key>
-				<integer>1</integer>
+				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<false/>
 				<key>queuedelaymode</key>
@@ -172,7 +172,7 @@
 				<key>runningsubtext</key>
 				<string>Decoding...</string>
 				<key>script</key>
-				<string>python encode.py -a decode "{query}"</string>
+				<string>python encode.py -a decode {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>

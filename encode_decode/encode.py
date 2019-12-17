@@ -18,20 +18,20 @@ def wrap(entries):
                 return "Error!"
         return try_parse
 
-    return {key: wrapper(value) for key, value in entries.items()}
+    return [(key, wrapper(value)) for key, value in entries]
 
 
-ENCODERS = wrap({
-    "Base64": base64.standard_b64encode,
-    "Base64 (URL safe)": base64.urlsafe_b64encode,
-    "URL": urllib.quote_plus
-})
+ENCODERS = wrap([
+    ("Base64", base64.standard_b64encode),
+    ("Base64 (URL safe)", base64.urlsafe_b64encode),
+    ("URL", urllib.quote_plus),
+])
 
-DECODERS = wrap({
-    "Base64": base64.standard_b64decode,
-    "Base64 (URL safe)": base64.urlsafe_b64decode,
-    "URL": urlparse.parse_qs
-})
+DECODERS = wrap([
+    ("Base64", base64.standard_b64decode),
+    ("Base64 (URL safe)", base64.urlsafe_b64decode),
+    ("URL", urlparse.parse_qs),
+])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
@@ -55,12 +55,12 @@ if __name__ == "__main__":
 
     fns = ENCODERS if cmd == "encode" else DECODERS
 
-    result = {key: fn(data) for key, fn in fns.items()}
+    result = [(key, fn(data)) for key, fn in fns]
     if args.output_for_alfred:
         feedback = alfred.Feedback()
-        for key, value in result.items():
+        for key, value in result:
             feedback.addItem(title=key, subtitle=value, arg=value)
         feedback.output()
     else:
-        for key, value in result.items():
+        for key, value in result:
             print "{}\t{}".format(key, value)
